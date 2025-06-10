@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosFinance.API", "ChaosFinance.API\ChaosFinance.API.csproj", "{F831A869-8B33-492B-807D-07FD35B4098D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosFinance.Domain", "ChaosFinance.Domain\ChaosFinance.Domain.csproj", "{A04CE82E-5AB3-49A1-9C89-1668E2331C57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosFinance.Application", "ChaosFinance.Application\ChaosFinance.Application.csproj", "{D6ED3130-F139-4CF6-842D-442B71CDB382}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosFinance.Infrastructure", "ChaosFinance.Infrastructure\ChaosFinance.Infrastructure.csproj", "{6050F1B5-57B2-4924-A1A2-A6AC5C9E2B79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F831A869-8B33-492B-807D-07FD35B4098D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F831A869-8B33-492B-807D-07FD35B4098D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F831A869-8B33-492B-807D-07FD35B4098D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F831A869-8B33-492B-807D-07FD35B4098D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A04CE82E-5AB3-49A1-9C89-1668E2331C57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A04CE82E-5AB3-49A1-9C89-1668E2331C57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A04CE82E-5AB3-49A1-9C89-1668E2331C57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A04CE82E-5AB3-49A1-9C89-1668E2331C57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6ED3130-F139-4CF6-842D-442B71CDB382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6ED3130-F139-4CF6-842D-442B71CDB382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6ED3130-F139-4CF6-842D-442B71CDB382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6ED3130-F139-4CF6-842D-442B71CDB382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6050F1B5-57B2-4924-A1A2-A6AC5C9E2B79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6050F1B5-57B2-4924-A1A2-A6AC5C9E2B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6050F1B5-57B2-4924-A1A2-A6AC5C9E2B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6050F1B5-57B2-4924-A1A2-A6AC5C9E2B79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
