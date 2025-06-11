@@ -1,6 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ChaosFinance.Application;
+using ChaosFinance.Domain.Repositories;
+using ChaosFinance.Domain.Services;
 using ChaosFinance.Infrastructure;
 using ChaosFinance.Infrastructure.Repositories;
 

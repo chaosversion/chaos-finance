@@ -1,6 +1,6 @@
 using ChaosFinance.Domain.Entities;
 
-namespace ChaosFinance.Application;
+namespace ChaosFinance.Domain.Services;
 
 public interface IWeatherForecastService
 {

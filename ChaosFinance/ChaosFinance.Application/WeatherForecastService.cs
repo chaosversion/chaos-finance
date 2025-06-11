@@ -1,5 +1,6 @@
 ﻿using ChaosFinance.Domain.Entities;
-using ChaosFinance.Infrastructure.Repositories;
+using ChaosFinance.Domain.Repositories;
+using ChaosFinance.Domain.Services;
 
 namespace ChaosFinance.Application;
 

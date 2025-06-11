@@ -1,6 +1,6 @@
 using ChaosFinance.Domain.Entities;
 
-namespace ChaosFinance.Infrastructure.Repositories;
+namespace ChaosFinance.Domain.Repositories;
 
 public interface IWeatherForecastRepository
 {

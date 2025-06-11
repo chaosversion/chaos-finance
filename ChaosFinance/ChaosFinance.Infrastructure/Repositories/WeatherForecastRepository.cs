@@ -1,4 +1,5 @@
 using ChaosFinance.Domain.Entities;
+using ChaosFinance.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChaosFinance.Infrastructure.Repositories;
