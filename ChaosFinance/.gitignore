@@ -133,3 +133,7 @@ $RECYCLE.BIN/
 _NCrunch*
 
 .idea/
+
+# SQLite database files
+*.sqlite
+*.db
