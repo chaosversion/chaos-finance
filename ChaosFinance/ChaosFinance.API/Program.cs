@@ -27,12 +27,17 @@ builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
 // Repositories
 builder.Services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 // app.UseHttpsRedirection();
@@ -40,5 +45,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UsePathBase("/swagger");
 
 app.Run();
