@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ChaosFinance.Domain\ChaosFinance.Domain.csproj" />
-      <ProjectReference Include="..\ChaosFinance.Infrastructure\ChaosFinance.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
