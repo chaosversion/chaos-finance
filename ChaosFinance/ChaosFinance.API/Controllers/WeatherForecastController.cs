@@ -1,11 +1,11 @@
+using ChaosFinance.Application.Interfaces;
 using ChaosFinance.Domain.Entities;
-using ChaosFinance.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChaosFinance.API.Controllers;
 
+[Route("api/v1/[Controller]")]
 [ApiController]
-[Route("/forecast")]
 public class WeatherForecastController : ControllerBase
 {
     private readonly IWeatherForecastService _weatherForecastService;

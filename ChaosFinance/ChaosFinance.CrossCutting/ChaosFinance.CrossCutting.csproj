@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChaosFinance.Application\ChaosFinance.Application.csproj" />
+    <ProjectReference Include="..\ChaosFinance.Domain\ChaosFinance.Domain.csproj" />
+    <ProjectReference Include="..\ChaosFinance.Infrastructure\ChaosFinance.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
