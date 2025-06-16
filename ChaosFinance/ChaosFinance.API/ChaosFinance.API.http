@@ -1,6 +1,31 @@
-@ChaosFinance.API_HostAddress = http://localhost:5175
+@API_HOST = http://localhost:5175
 
-GET {{ChaosFinance.API_HostAddress}}/weatherforecast/
+POST {{API_HOST}}/auth/register
 Accept: application/json
 
+{
+  "username": "testuser",
+  "email": "test@test.com",
+  "type": "PF",
+  "password": "test123"
+}
+
+> {% client.global.set("auth_token", response.body.token); %}
 ###
+
+POST {{API_HOST}}/auth/login
+Accept: application/json
+
+{
+  "email": "test@test.com",
+  "password": "test123"
+}
+
+> {% client.global.set("auth_token", response.body.token); %}
+###
+
+GET {{API_HOST}}/auth
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+
+

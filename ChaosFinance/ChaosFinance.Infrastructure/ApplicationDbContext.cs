@@ -23,41 +23,17 @@ public class ApplicationDbContext: DbContext
             .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
     }
 
-    public DbSet<WeatherForecast> WeatherForecast { get; set; }
+    public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<WeatherForecast>(entity =>
+        modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(u => u.Id);
-            entity.Property(u => u.Condition).IsRequired().HasConversion<string>();
-            entity.Property(u => u.Description).HasMaxLength(255);
-            entity.Property(u => u.Date).IsRequired();
-            entity.Property(u => u.TemperatureC).IsRequired();
-
-            // MOCKED DATA
-            entity.HasData(
-                new WeatherForecast
-                {
-                    Id = 1,
-                    Condition = WeatherCondition.SUNNY,
-                    TemperatureC = 25,
-                    Date = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
-                },
-                new WeatherForecast
-                {
-                    Id = 2,
-                    Condition = WeatherCondition.CLOUDY,
-                    TemperatureC = 16,
-                    Date = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
-                },
-                new WeatherForecast()
-                {
-                    Id = 3,
-                    Condition = WeatherCondition.SNOWY,
-                    TemperatureC = -5,
-                    Date = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
-                });
+            entity.Property(u => u.Username).IsRequired().HasMaxLength(100);
+            entity.Property(u => u.Email).IsRequired().HasMaxLength(100);
+            entity.Property(u => u.Password).IsRequired().HasMaxLength(100);
+            entity.Property(u => u.Type).IsRequired().HasConversion<string>();
         });
     }
 }
