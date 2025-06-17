@@ -13,7 +13,8 @@ namespace ChaosFinance.Application.Services;
 public class AuthService(
     IConfiguration configuration,
     IUserRepository userRepository,
-    IPasswordHasher passwordHasher
+    IPasswordHasher passwordHasher,
+    ICategoryService categoryService
 ) : IAuthService
 {
     public async Task<(User user, string token)> Register(string username, string email, string password)
@@ -33,6 +34,9 @@ public class AuthService(
         };
 
         await userRepository.Create(user);
+
+        // Create default categories for the new user
+        await categoryService.CreateDefaultCategories(user.Id);
 
         var token = GenerateJwtToken(user);
 

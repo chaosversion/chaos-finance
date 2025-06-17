@@ -24,7 +24,12 @@ public class AuthController(
         return Ok(new RegisterResponse()
         {
             Token = token,
-            User = user
+            User = new UserResponse
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email
+            }
         });
     }
     
@@ -38,7 +43,12 @@ public class AuthController(
         return Ok(new LoginResponse
         {
             Token = token,
-            User = user
+            User = new UserResponse
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email
+            }
         });
     }
     
