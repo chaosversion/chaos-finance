@@ -1,6 +1,9 @@
 @API_HOST = http://localhost:5175
 
+###
+
 POST {{API_HOST}}/auth/register
+Content-Type: application/json
 Accept: application/json
 
 {
@@ -11,9 +14,11 @@ Accept: application/json
 }
 
 > {% client.global.set("auth_token", response.body.token); %}
+
 ###
 
 POST {{API_HOST}}/auth/login
+Content-Type: application/json
 Accept: application/json
 
 {
@@ -22,10 +27,9 @@ Accept: application/json
 }
 
 > {% client.global.set("auth_token", response.body.token); %}
+
 ###
 
 GET {{API_HOST}}/auth
 Accept: application/json
 Authorization: Bearer {{auth_token}}
-
-
