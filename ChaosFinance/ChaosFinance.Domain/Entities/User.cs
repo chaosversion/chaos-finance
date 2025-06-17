@@ -14,6 +14,9 @@ public class User
     public string Password { get; set; }
     
     public PersonType Type { get; set; }
+    
+    // Navigation property
+    public ICollection<Category> Categories { get; set; } = new List<Category>();
 }
 
 public enum PersonType
