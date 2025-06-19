@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosFinance.Application", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosFinance.Infrastructure", "ChaosFinance.Infrastructure\ChaosFinance.Infrastructure.csproj", "{6050F1B5-57B2-4924-A1A2-A6AC5C9E2B79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosFinance.CrossCutting", "ChaosFinance.CrossCutting\ChaosFinance.CrossCutting.csproj", "{9658B3EF-5581-449E-B7EC-4060A8F8BE7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{6050F1B5-57B2-4924-A1A2-A6AC5C9E2B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6050F1B5-57B2-4924-A1A2-A6AC5C9E2B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6050F1B5-57B2-4924-A1A2-A6AC5C9E2B79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9658B3EF-5581-449E-B7EC-4060A8F8BE7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9658B3EF-5581-449E-B7EC-4060A8F8BE7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9658B3EF-5581-449E-B7EC-4060A8F8BE7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9658B3EF-5581-449E-B7EC-4060A8F8BE7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

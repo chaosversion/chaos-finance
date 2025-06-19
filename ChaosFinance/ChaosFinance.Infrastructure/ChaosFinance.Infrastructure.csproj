@@ -27,8 +27,4 @@
       <ProjectReference Include="..\ChaosFinance.Domain\ChaosFinance.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Migrations\" />
-    </ItemGroup>
-
 </Project>
