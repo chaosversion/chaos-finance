@@ -1,4 +1,4 @@
-namespace ChaosFinance.API.DTOs.Responses;
+namespace ChaosFinance.Application.DTOs.Responses;
 
 public class ErrorResponse
 {

@@ -8,11 +8,50 @@ namespace ChaosFinance.Infrastructure.EntitiesConfiguration
     {
         public void Configure(EntityTypeBuilder<Account> builder)
         {
-            builder.HasKey(t => t.Id);
-            builder.Property(p => p.Name).HasMaxLength(255).IsRequired();
+            builder.HasKey(a => a.Id);
 
-            builder.HasOne(e => e.User).WithMany(e => e.Accounts)
-                .HasForeignKey(e => e.UserId);
+            builder.Property(a => a.Id)
+                .ValueGeneratedOnAdd();
+
+            builder.Property(a => a.UserId)
+                .IsRequired();
+
+            builder.Property(a => a.Name)
+                .IsRequired()
+                .HasMaxLength(255);
+
+            builder.HasIndex(a => new { a.UserId, a.Name })
+                .IsUnique();
+
+            builder.Property(a => a.Type)
+                .HasConversion<string>() // Grava como texto. Remova se preferir como int
+                .IsRequired();
+
+            builder.Property(a => a.CreatedAt)
+                .HasDefaultValueSql("NOW()")
+                .IsRequired();
+
+            builder.Property(a => a.UpdatedAt)
+                .HasDefaultValueSql("NOW()")
+                .IsRequired();
+
+            builder.HasIndex(a => new { a.UserId, a.Name })
+                .IsUnique();
+
+            builder.HasOne(a => a.User)
+                .WithMany(u => u.Accounts)
+                .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(a => a.TransactionsAsOrigin)
+                .WithOne(t => t.Account)
+                .HasForeignKey(t => t.AccountId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(a => a.TransactionsAsDestination)
+                .WithOne(t => t.DestinationAccount)
+                .HasForeignKey(t => t.DestinationAccountId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

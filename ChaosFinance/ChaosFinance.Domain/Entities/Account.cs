@@ -1,17 +1,18 @@
-﻿using ChaosFinance.Domain.Validation;
+﻿using ChaosFinance.Domain.Enums;
+using ChaosFinance.Domain.Validation;
 
 namespace ChaosFinance.Domain.Entities
 {
     public class Account : Entity
     {
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
         public string Name { get; set; }
         public AccountType Type { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-        public ICollection<Account> Accounts { get; set; }
-        public ICollection<Account> DestinationAccounts { get; set; }
+        public virtual ICollection<Transaction> TransactionsAsOrigin { get; set; } = new List<Transaction>();
+        public virtual ICollection<Transaction> TransactionsAsDestination { get; set; } = new List<Transaction>();
 
 
         public Account(int userId, string name, AccountType type, DateTime createdAt, DateTime updatedAt)

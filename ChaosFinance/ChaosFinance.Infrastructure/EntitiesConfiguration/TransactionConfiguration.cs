@@ -15,11 +15,40 @@ namespace ChaosFinance.Infrastructure.EntitiesConfiguration
         {
             builder.HasKey(t => t.Id);
 
-            builder.Property(p => p.Description).HasMaxLength(255).IsRequired();
+            builder.Property(t => t.Id)
+                .ValueGeneratedOnAdd();
+
+            builder.Property(t => t.UserId)
+                .IsRequired();
+
+            builder.Property(t => t.AccountId)
+                .IsRequired();
+
+            builder.Property(t => t.Description)
+                .HasMaxLength(255)
+                .IsRequired();
 
             builder.Property(t => t.Amount)
                 .HasPrecision(12, 2)
                 .IsRequired();
+
+            builder.Property(t => t.Date)
+            .IsRequired();
+
+            builder.Property(t => t.Type)
+                .HasConversion<string>()
+                .IsRequired();
+
+            builder.Property(t => t.CreatedAt)
+                .HasDefaultValueSql("NOW()")
+                .IsRequired();
+
+            builder.Property(t => t.UpdatedAt)
+                .HasDefaultValueSql("NOW()")
+                .IsRequired();
+
+            builder.Ignore(t => t.CategoryName);
+            builder.Ignore(t => t.AccountName);
 
             builder.HasOne(t => t.User)
                 .WithMany(u => u.Transactions)
@@ -28,11 +57,13 @@ namespace ChaosFinance.Infrastructure.EntitiesConfiguration
 
             builder.HasOne(t => t.Account)
                 .WithMany()
-                .HasForeignKey(t => t.AccountId);
+                .HasForeignKey(t => t.AccountId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(t => t.DestinationAccount)
                 .WithMany()
-                .HasForeignKey(t => t.DestinationAccountId);
+                .HasForeignKey(t => t.DestinationAccountId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(t => t.Category)
                 .WithMany()

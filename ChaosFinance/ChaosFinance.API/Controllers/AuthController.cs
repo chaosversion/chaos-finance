@@ -1,8 +1,10 @@
 using System.Security.Claims;
-using ChaosFinance.API.DTOs.Requests;
-using ChaosFinance.API.DTOs.Responses;
+using ChaosFinance.Application.DTOs;
+using ChaosFinance.Application.DTOs.Requests;
+using ChaosFinance.Application.DTOs.Responses;
+using ChaosFinance.Application.Interfaces;
+using ChaosFinance.Application.Services;
 using ChaosFinance.Domain.Entities;
-using ChaosFinance.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +12,7 @@ namespace ChaosFinance.API.Controllers;
 
 [ApiController]
 [Route("auth")]
-public class AuthController(
-    IAuthService authService
-): ControllerBase
+public class AuthController(IAuthService authService) : ControllerBase
 {
     [HttpPost("register")]
     public async Task<ActionResult> Register([FromBody] RegisterRequest request)
@@ -44,14 +44,14 @@ public class AuthController(
     
     [Authorize]
     [HttpGet]
-    public async Task<ActionResult<User>> Profile()
+    public async Task<ActionResult<UserDTO>> Profile()
     {
         var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
         
         if (id is null) return Unauthorized();
         
         var user = await authService.GetProfile(int.Parse(id));
-        
+
         return Ok(user);
     }
 }

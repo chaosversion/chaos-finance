@@ -5,9 +5,9 @@ namespace ChaosFinance.Domain.Entities
     public class Budget : Entity
     {
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
         public decimal Amount { get; set; }
         public int Month { get; set; }
         public int Year { get; set; }

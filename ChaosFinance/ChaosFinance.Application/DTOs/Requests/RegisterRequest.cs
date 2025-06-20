@@ -1,7 +1,7 @@
+using ChaosFinance.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
-using ChaosFinance.Domain.Entities;
 
-namespace ChaosFinance.API.DTOs.Requests;
+namespace ChaosFinance.Application.DTOs.Requests;
 
 public class RegisterRequest
 {
