@@ -1,4 +1,5 @@
-﻿using ChaosFinance.Domain.Validation;
+﻿using ChaosFinance.Domain.Enums;
+using ChaosFinance.Domain.Validation;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChaosFinance.Domain.Entities
@@ -6,13 +7,13 @@ namespace ChaosFinance.Domain.Entities
     public class Transaction : Entity
     {
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
         public int AccountId { get; set; }
-        public Account Account { get; set; }
+        public virtual Account Account { get; set; }
         public int? DestinationAccountId { get; set; }
-        public Account? DestinationAccount { get; set; }
+        public virtual Account? DestinationAccount { get; set; }
         public int? CategoryId { get; set; }
-        public Category? Category { get; set; }
+        public virtual Category? Category { get; set; }
         public string Description { get; set; }
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
@@ -23,7 +24,11 @@ namespace ChaosFinance.Domain.Entities
         public string AccountName { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-        public ICollection<TransactionTag> TransactionTags { get; set; }
+        public virtual ICollection<TransactionTag> TransactionTags { get; set; } = new List<TransactionTag>();
+
+        public Transaction()
+        {
+        }
 
         public Transaction(string description, decimal amount, DateTime date, TransactionType type, int accountId, int destinationAccountId, int categoryId, string categoryName, string accountName, DateTime createdAt, DateTime updatedAt)
         {

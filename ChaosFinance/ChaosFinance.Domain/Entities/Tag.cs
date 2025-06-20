@@ -5,11 +5,11 @@ namespace ChaosFinance.Domain.Entities
     public class Tag : Entity
     {
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
         public string Name { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-        public ICollection<TransactionTag> TransactionTags { get; set; }
+        public virtual ICollection<TransactionTag> TransactionTags { get; set; } = new List<TransactionTag>();
 
         public Tag(int userId, string name, DateTime createdAt, DateTime updatedAt)
         {

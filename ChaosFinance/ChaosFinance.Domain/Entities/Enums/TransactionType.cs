@@ -1,4 +1,4 @@
-﻿namespace ChaosFinance.Domain.Entities
+﻿namespace ChaosFinance.Domain.Enums
 {
     public enum TransactionType
     {

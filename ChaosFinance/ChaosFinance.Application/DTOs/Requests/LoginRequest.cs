@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ChaosFinance.API.DTOs.Requests;
+namespace ChaosFinance.Application.DTOs.Requests;
 
 public class LoginRequest
 {

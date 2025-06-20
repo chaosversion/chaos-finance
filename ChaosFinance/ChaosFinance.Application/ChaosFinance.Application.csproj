@@ -7,8 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="14.0.0" />
+      <PackageReference Include="FluentValidation" Version="11.9.0" />
+      <PackageReference Include="MediatR" Version="12.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ChaosFinance.CrossCutting\ChaosFinance.CrossCutting.csproj" />
       <ProjectReference Include="..\ChaosFinance.Domain\ChaosFinance.Domain.csproj" />
-      <ProjectReference Include="..\ChaosFinance.Infrastructure\ChaosFinance.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

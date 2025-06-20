@@ -7,9 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ChaosFinance.Application\ChaosFinance.Application.csproj" />
-      <ProjectReference Include="..\ChaosFinance.Domain\ChaosFinance.Domain.csproj" />
-      <ProjectReference Include="..\ChaosFinance.Infrastructure\ChaosFinance.Infrastructure.csproj" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.6" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.6" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.6" />
+      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="IoC\" />
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿namespace ChaosFinance.Domain.Interfaces
 {
-    internal interface IBaseRepository<T>
+    public interface IBaseRepository<T>
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int? id);

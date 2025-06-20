@@ -1,22 +1,20 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+using AutoMapper;
+using ChaosFinance.Application.DTOs;
+using ChaosFinance.Application.Interfaces;
 using ChaosFinance.Domain.Adapters;
 using ChaosFinance.Domain.Entities;
 using ChaosFinance.Domain.Repositories;
-using ChaosFinance.Domain.Services;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 
 namespace ChaosFinance.Application.Services;
 
 public class AuthService(
-    IConfiguration configuration,
     IUserRepository userRepository,
-    IPasswordHasher passwordHasher
+    IPasswordHasher passwordHasher,
+    IJwtTokenGenerator jwtTokenGenerator,
+    IMapper mapper
 ) : IAuthService
 {
-    public async Task<(User user, string token)> Register(string username, string email, string password)
+    public async Task<(UserDTO user, string token)> Register(string username, string email, string password)
     {
         var existingUser = await userRepository.GetByEmail(email);
 
@@ -24,77 +22,42 @@ public class AuthService(
         {
             throw new InvalidOperationException("User with this email already exists.");
         }
-        
-        var user = new User
+
+        var userDTO = new UserDTO
         {
-            Username = username,
-            Email = email,
-            Password = passwordHasher.HashPassword(password)
+            Username = username, Email = email, Name = username, PasswordHash = passwordHasher.HashPassword(password), CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow
         };
+
+        User user = mapper.Map<User>(userDTO);
 
         await userRepository.Create(user);
 
-        var token = GenerateJwtToken(user);
+        var token = jwtTokenGenerator.GenerateToken(user);
 
-        return (user, token);
+        userDTO = mapper.Map<UserDTO>(userDTO);
+
+        return (userDTO, token);
     }
 
-
-    public async Task<(User user, string token)> Login(string email, string password)
+    public async Task<(UserDTO user, string token)> Login(string email, string password)
     {
-        // Retrieve user by email
         var user = await userRepository.GetByEmail(email);
 
-        // If user is not found, return null or throw an exception
-        if (user == null)
+        if (user == null || !passwordHasher.VerifyHashedPassword(user.PasswordHash, password))
         {
             throw new InvalidOperationException("Invalid email or password.");
         }
 
-        // Verify the password
-        var result = passwordHasher.VerifyHashedPassword(user.Password, password);
+        var token = jwtTokenGenerator.GenerateToken(user);
 
-        // If the password does not match, throw an exception
-        if (result is false)
-        {
-            throw new InvalidOperationException("Invalid email or password.");
-        }
+        var userDTO = mapper.Map<UserDTO>(user);
 
-        // Generate JWT Token
-        var token = GenerateJwtToken(user);
-
-        // Return the user and token
-        return (user, token);
+        return (userDTO, token);
     }
-    
-    private string GenerateJwtToken(User user)
+    public async Task<UserDTO?> GetProfile(int userId)
     {
-        var secretKey = configuration["Jwt:SecretKey"];
-        var issuer = configuration["Jwt:Issuer"];
+        var user = await userRepository.GetById(userId);
 
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
-        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-        var claims = new[]
-        {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Username),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-        };
-
-        var token = new JwtSecurityToken(
-            issuer: issuer,
-            claims: claims,
-            expires: DateTime.Now.AddDays(7),
-            signingCredentials: credentials
-        );
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
-    }
-    
-    public async Task<User?> GetProfile(int userId)
-    {
-        return await userRepository.GetById(userId);
+        return mapper.Map<UserDTO>(user);
     }
 }
